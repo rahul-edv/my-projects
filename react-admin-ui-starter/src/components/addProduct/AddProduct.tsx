@@ -1,4 +1,4 @@
-import "./addUser.scss";
+import "./addProduct.scss";
 import { GridColDef } from "@mui/x-data-grid";
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const AddUser = (props: Props) => {
+const AddProduct = (props: Props) => {
   const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // add new item
@@ -37,4 +37,4 @@ const AddUser = (props: Props) => {
   );
 };
 
-export default AddUser;
+export default AddProduct;

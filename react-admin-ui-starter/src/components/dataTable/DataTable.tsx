@@ -22,7 +22,7 @@ const DataTable = (props: Props) => {
   const actionColumn: GridColDef = {
     field: "action",
     headerName: "Action",
-    width: 200,
+    width: 100,
     renderCell: (params: GridCellParams) => {
       return (
         <div className="action">
@@ -54,7 +54,7 @@ const DataTable = (props: Props) => {
         slotProps={{
           toolbar: {
             showQuickFilter: true,
-            quickFilterProp: { debounceMs: 500 },
+            quickfilterprop: { debounceMs: 500 },
           },
         }}
         pageSizeOptions={[5]}
