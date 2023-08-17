@@ -1,9 +1,9 @@
 import { useState } from "react";
 import DataTable from "../../components/dataTable/DataTable";
-import { userRows } from "../../data";
 import "./users.scss";
 import { GridColDef } from "@mui/x-data-grid";
 import AddUser from "../../components/addUser/AddUser";
+import { useQuery } from "@tanstack/react-query";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 40 },
@@ -56,6 +56,12 @@ const columns: GridColDef[] = [
 const Users = () => {
   const [open, setOpen] = useState(false);
 
+  const { isLoading, data } = useQuery({
+    queryKey: ["allusers"],
+    queryFn: () =>
+      fetch("http://localhost:8800/api/users").then((res) => res.json()),
+  });
+
   return (
     <div className="users">
       <div className="info">
@@ -64,7 +70,11 @@ const Users = () => {
           Add new User
         </button>
       </div>
-      <DataTable slug="users" columns={columns} rows={userRows} />
+      {isLoading ? (
+        "Loading..."
+      ) : (
+        <DataTable slug="users" columns={columns} rows={data} />
+      )}
       {open && <AddUser slug="user" columns={columns} setOpen={setOpen} />}
     </div>
   );

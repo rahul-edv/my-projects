@@ -20,8 +20,8 @@ let users = [
   {
     id: 2,
     img: "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    lastName: "Manning",
-    firstName: "Stella",
+    lastName: "Manny",
+    firstName: "Stellar",
     email: "manning@gmail.com",
     phone: "422 426 715",
     createdAt: "03.07.2023",

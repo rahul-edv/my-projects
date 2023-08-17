@@ -9,6 +9,9 @@ import Login from "./pages/login/Login";
 import "./styles/global.scss";
 import User from "./pages/User/User";
 import Product from "./pages/Product/Product";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
   const Layout = () => {
@@ -21,8 +24,10 @@ function App() {
             <Sidebar />
           </div>
           <div className="contentContainer">
-            {/* can be any component , this is for pages */}
-            <Outlet />
+            {/* can be any component inside outlet , this is for pages */}
+            <QueryClientProvider client={queryClient}>
+              <Outlet />
+            </QueryClientProvider>
           </div>
         </div>
         <Footer />

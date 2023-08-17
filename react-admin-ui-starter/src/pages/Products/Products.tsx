@@ -1,9 +1,9 @@
 import "./products.scss";
 import { useState } from "react";
 import DataTable from "../../components/dataTable/DataTable";
-import { products } from "../../data";
 import { GridColDef } from "@mui/x-data-grid";
 import AddProduct from "../../components/addProduct/AddProduct";
+import { useQuery } from "@tanstack/react-query";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 40 },
@@ -56,6 +56,12 @@ const columns: GridColDef[] = [
 const Products = () => {
   const [open, setOpen] = useState(false);
 
+  const { isLoading, data } = useQuery({
+    queryKey: ["allproducts"],
+    queryFn: () =>
+      fetch("http://localhost:8800/api/products").then((res) => res.json()),
+  });
+
   return (
     <div className="products">
       <div className="info">
@@ -64,7 +70,11 @@ const Products = () => {
           Add new product
         </button>
       </div>
-      <DataTable slug="products" columns={columns} rows={products} />
+      {isLoading ? (
+        "Loading..."
+      ) : (
+        <DataTable slug="products" columns={columns} rows={data} />
+      )}
       {open && (
         <AddProduct slug="product" columns={columns} setOpen={setOpen} />
       )}
