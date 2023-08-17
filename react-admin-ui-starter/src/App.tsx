@@ -7,6 +7,8 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Footer from "./components/footer/Footer";
 import Login from "./pages/login/Login";
 import "./styles/global.scss";
+import User from "./pages/User/User";
+import Product from "./pages/Product/Product";
 
 function App() {
   const Layout = () => {
@@ -34,8 +36,10 @@ function App() {
       element: <Layout />,
       children: [
         { path: "/", element: <Home /> },
-        { path: "users", element: <Users /> },
-        { path: "products", element: <Products /> },
+        { path: "/users", element: <Users /> },
+        { path: "/products", element: <Products /> },
+        { path: "/users/:id", element: <User /> },
+        { path: "/products/:id", element: <Product /> },
       ],
     },
     {
